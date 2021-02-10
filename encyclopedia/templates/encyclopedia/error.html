@@ -1,0 +1,14 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+<div class="error">
+    <h1>{{e_num}}</h1>
+    <img src="/static/encyclopedia/unhappy.jpg" alt="unhappy">
+    <h3>{{message}}</h3>
+</div>
+    
+{% endblock %}

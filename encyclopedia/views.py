@@ -18,5 +18,15 @@ def title(request, title):
             'content': content
         })
     else:
-        return render(request, "encyclopedia/index.html",)
+        return render(request, "encyclopedia/error.html",{
+            "message": "The page requested does not exist!",
+            "e_num" : '404'
+        })
+def search(request, query):
+    content = util.get_entry(query)
+    if content:
+        title(request,query)
+    else:
+        return
+
 
