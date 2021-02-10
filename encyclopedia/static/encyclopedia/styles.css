@@ -20,7 +20,6 @@ textarea {
 .main {
     padding: 10px;
 }
-
 .search {
     width: 100%;
     font-size: 15px;
@@ -35,4 +34,9 @@ textarea {
 
 .sidebar h2 {
     margin-top: 5px;
+}
+@media only screen and (max-width: 600px){
+    .testo{
+        margin-left: 20% !important;
+    }
 }
