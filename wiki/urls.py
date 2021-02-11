@@ -18,6 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include("encyclopedia.urls")),
     # if add main directory will find the right way
     path('wiki/', include("encyclopedia.urls"))
 ]

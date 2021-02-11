@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block body %}
+    <h1>Search Results:</h1>
+
+    {% if not substrings %}
+        <h3>No Results Found.</h3>
+    {% else %}
+        <ul>
+            {% for entry in substrings %}
+                <li><a href="{% url 'encyclopedia:title' title=entry %}">{{ entry }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}
