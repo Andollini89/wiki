@@ -1,0 +1,42 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit Entry
+{% endblock %}
+
+{% block body %}
+    <h1>Insert a new wiki page </h1>
+    <form action="{% url 'encyclopedia:edit' title=title %}" method="POST">
+        {% csrf_token %}
+        <div class="p-1">
+            <h1>{{title}}</h1>
+        </div>
+        <div class='p-1 row'>
+            <div class="col-7">
+                <!--<textarea name="{{title}}">{{content}}</textarea>-->
+                {{content.desc}}
+                <br>
+                <button class=" btn-light btn-lg btn-secondary" type="submit">Save</button>
+            </div>        
+            <div class="col-5">
+                <h3>Some Formatting Commands:</h3>
+                <h4>Text size:</h4>
+                <p>#  --> Biggest</p>
+                <p>## --> Second Biggest</p>
+                <p>### --> Medium </p>
+                <p>#### --> Small</p>
+                <p>##### --> Smallest</p>
+                <h4>Text style</h4>
+                <p>**text** --> <b>Bold</b></p>
+                <p>_text_ --> <i>Italic</i></p>
+                <P>***text*** --> <i><b>Italic and Bold</b></i></P>
+                <h4>Links</h4>
+                <p>[link](#link.link.com) --> Extenal clickable Link</p>
+                <p>[link](#link) --> Internal Link</p>
+                <h4>Lists</h4> 
+                <p>-text --> Unordered List </p>
+                <p>1.text --> Ordered List</p>
+            </div>
+        </div>        
+    </form> 
+{% endblock %}

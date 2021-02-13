@@ -5,5 +5,14 @@
 {% endblock %}
 
 {% block body %}
-    {{content|safe}}
+<div class="testo row">
+    <div class="col-9">
+        {{content|safe}}
+    </div>
+    <div class="col-3">
+        <a href="{% url 'encyclopedia:edit' title=title %}">Edit</a>
+    </div>
+    
+</div>
+    
 {% endblock %}
