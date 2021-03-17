@@ -91,7 +91,7 @@ def edit(request, title):
         forms = EditTextForm(request.POST)
         if forms.is_valid():
             description = forms.cleaned_data['desc']
-            util.save_entry(title, description)
+            util.save_entry(title.rstrip("\n"), description.replace("\n",""))
             print(description, title)
         return HttpResponseRedirect(reverse('encyclopedia:title', args=(),kwargs={
                     'title':title
