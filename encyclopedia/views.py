@@ -2,6 +2,8 @@ from logging import PlaceHolder
 from re import sub
 import random
 from django.shortcuts import redirect, render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from django import forms
 import markdown2
 
@@ -47,7 +49,10 @@ def search(request):
             query = form.cleaned_data["query"].upper()
             entries = util.list_entries()
             if query in entries:
-                return titles(request,query)
+                print(query)
+                return HttpResponseRedirect(reverse('encyclopedia:title', args=(),kwargs={
+                    'title': query
+                }))
             else:
                 list_of_substrings = []
                 for entry in entries:
@@ -74,7 +79,9 @@ def new_page(request):
             else:
                 description = "#"+ title +"\n" + description
                 util.save_entry(title, description)
-            return titles(request, title)
+            return HttpResponseRedirect(reverse('encyclopedia:title', args=(),kwargs={
+                    'title':title
+                    }))
     else:
         return render(request, "encyclopedia/new_page.html",{
             "insertions": NewPageForm(),
@@ -86,7 +93,9 @@ def edit(request, title):
             description = forms.cleaned_data['desc']
             util.save_entry(title, description)
             print(description, title)
-        return titles(request, title) 
+        return HttpResponseRedirect(reverse('encyclopedia:title', args=(),kwargs={
+                    'title':title
+                    })) 
     else:
         content = util.get_entry(title)
         form = EditTextForm()
@@ -98,7 +107,8 @@ def edit(request, title):
 def randomPage(request):
     entries = util.list_entries()
     index = random.randint(0, len(entries)-1)
-    return titles(request, entries[index])
+    return HttpResponseRedirect(reverse('encyclopedia:title', args=(),kwargs={
+                    'title':entries[index]
+                    }))
 
             
-

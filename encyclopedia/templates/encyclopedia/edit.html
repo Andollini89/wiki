@@ -6,7 +6,7 @@
 
 {% block body %}
     <h1>Insert a new wiki page </h1>
-    <form action="{% url 'encyclopedia:title' title=title %}" method="POST">
+    <form action="{% url 'encyclopedia:edit' title=title %}" method="POST">
         {% csrf_token %}
         <div class="p-1">
             <h1>{{title}}</h1>
