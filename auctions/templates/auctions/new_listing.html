@@ -1,0 +1,50 @@
+{% extends "auctions/layout.html" %}
+
+{% block title%}
+    Create
+{% endblock%}
+
+{% block body %}
+
+
+<div class=" m-1 p-1">
+        Add new category
+        <form action="{%url 'add_category'%}" method="post">
+            {% csrf_token %}
+            
+            {{cat.categories}}
+            <input class=" bg-transparent" type="submit" value="&plus;"style="color: rgb(40, 184, 40); font-size: 30px; border:none;">
+        </form>
+</div>
+    <form action="{% url 'new_listing'%}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class=" m-1 p-1">
+            <label>Category</label><br>
+            {{form.category}}
+        </div>
+        <div class=" m-1 p-1">
+            <label>Title</label><br>
+            {{form.title}}
+        </div>
+        <div class=" m-1 p-1">
+            <label>Description</label><br>
+            {{form.description}}
+        </div>
+        <div class=" m-1 p-1">
+            <label>Starting Price</label><br>
+            {{form.starting_bid}}
+        </div>
+        <div class=" m-1 p-1">
+            <label>Select an image for the item</label><br>
+            {{form.image}}
+        </div> 
+         <div class="m-1 p-1">
+            <input class=" btn-primary" type="submit" value="Save">
+        </div>     
+        
+    </form>
+
+
+
+{% endblock %} 

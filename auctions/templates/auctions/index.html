@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    {% if user.is_authenticated %}
+    <div class="container mb-5">
+        <a style="float: right;" href="{% url 'new_listing' %}">&plus;Create new Listing</a>
+    </div>
+        {% endif %}
+    <div class=" container midlebox text-capitalize">
+        <div class="row" >
+            {% for item in listings %}
+            <a href="{% url 'listing' listing_id=item.id%}">
+                <div class="col-lg-3 col-sm-4 col-6 text-center pt-3 pb-3" style="width: 270px;">
+                    <h3 style="width: 250px;">{{item.title}}</h3>
+                    {%if item.image %}
+                        <img src="{{MEDIA_URL}}{{item.image}}" alt="Something went wrong!" width="250px" height="250px">
+                    {%else%}
+                        <img src="{{MEDIA_URL}}no-image.jpg" alt="Something went wrong!" width="250px" height="250px">
+                    {%endif%}   
+                    <h6 style="width: 250px;">{{item.description}}</h6>
+                    <h6 style="width: 250px;">&dollar; {{item.starting_bid}}</h6>
+                </div>
+            </a>
+            {%endfor%}
+            </div> 
+    </div>
+    
+{% endblock %}

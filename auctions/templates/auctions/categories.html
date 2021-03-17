@@ -1,0 +1,35 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Categories</h2>
+    <div class=" container midlebox text-capitalize">
+        {%for cat in category%}
+        <div class="row mb-5  mt-5">
+            <h4 class="">{{cat.categories}}:</h4>
+        <div class="row mt-5 ">
+            {% for items in listings %}
+                {% for item in items%}
+                    {%if cat == item.category  %}
+                        <a href="{% url 'listing' listing_id=item.id%}">
+                            <div class="col-lg-3 col-sm-4 col-6 text-center" style="width: 270px;">
+                                <h3 style="width: 250px;">{{item.title}}</h3>
+                                {%if item.image %}
+                                    <img src="{{MEDIA_URL}}{{item.image}}" alt="Something went wrong!" width="250px" height="250px">
+                                {%else%}
+                                    <img src="{{MEDIA_URL}}no-image.jpg" alt="Something went wrong!" width="250px" height="250px">
+                                {%endif%}   
+                                <h6 style="width: 250px;">{{item.description}}</h6>
+                                <h6 style="width: 250px;">&dollar; {{item.starting_bid}}</h6>
+                            </div>
+                        </a>
+                    {%endif%}
+                {%endfor%}
+            {%endfor%}
+            </div>
+            <hr> 
+        </div>
+        {%endfor%}
+        
+    </div>
+    
+{% endblock %}
