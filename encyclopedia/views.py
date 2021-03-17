@@ -71,6 +71,9 @@ def new_page(request):
             title = forms.cleaned_data['title'].title()
             description = forms.cleaned_data['description'].title()
             entries = util.list_entries()
+            for i in range(len(entries)):
+                entries[i] = entries[i].upper()
+
             if title.upper() in entries:
                 #print(title.upper(), entries)
                 return render(request, "encyclopedia/error.html",{
